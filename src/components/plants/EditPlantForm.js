@@ -50,6 +50,14 @@ const EditPlantForm = (props) => {
           onChange={dateInputHandler}
           className={classes.lastWateredInput}
         ></input>
+       <label>Last fertilized: </label>
+        <input
+          type="date"
+          id="date"
+          value={dateInput}
+          onChange={dateInputHandler}
+          className={classes.lastWateredInput}
+        ></input>
         <button type="submit" className="submitBtn">
           Submit
         </button>
