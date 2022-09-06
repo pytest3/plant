@@ -50,7 +50,7 @@ const EditPlantForm = (props) => {
           onChange={dateInputHandler}
           className={classes.lastWateredInput}
         ></input>
-       <label>Last fertilised: </label>
+       <label>Last fertilized: </label>
         <input
           type="date"
           id="date"
