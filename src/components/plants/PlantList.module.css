@@ -1,0 +1,13 @@
+.list {
+  margin: 0px;
+  margin-top: 3.9rem;
+  padding: 0px;
+}
+
+.line {
+  border: none;
+  border-top: 0.15rem solid #7ceece;
+  border-radius: 0.8em;
+  margin-top: 0.1rem;
+  transform: translateY(-0.1rem);
+}

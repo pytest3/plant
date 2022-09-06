@@ -1,0 +1,32 @@
+input,
+label {
+  display: block;
+  margin: 0.4rem 0rem;
+}
+
+.header {
+  margin-bottom: 0px;
+}
+
+.error {
+  background-color: pink;
+  border: 1px solid red;
+  border-radius: 0.3rem;
+  width: 45%;
+  height: 1.8rem;
+}
+
+.nameInput,
+.dateInput,
+.freqInput {
+  width: 45%;
+  height: 1.8rem;
+  background-color: white;
+  border: 0.5px solid gray;
+  border-radius: 0.3rem;
+}
+
+.optional {
+  font-size: 0.7rem;
+  color: rgb(187, 183, 183);
+}

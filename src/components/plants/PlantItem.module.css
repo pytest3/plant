@@ -1,0 +1,46 @@
+.text {
+  font-size: 0.8rem;
+}
+
+.plant {
+  text-decoration: none;
+  color: black;
+  display: flex;
+  width: 155px;
+  align-items: center;
+}
+
+.lastWatered {
+  width: 65px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.daysSince {
+  display: flex;
+  width: 75px;
+  justify-content: center;
+  align-items: center;
+}
+
+.frequency {
+  width: 100px;
+  display: flex;
+  align-items: center;
+}
+
+.waterBtn {
+  margin-left: auto;
+  background-color: white;
+  border: none;
+}
+
+.water {
+  height: 19px;
+  fill: #a9def9;
+}
+
+h2 {
+  margin: 1rem 0;
+}

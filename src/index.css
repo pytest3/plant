@@ -1,0 +1,50 @@
+* {
+  box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
+}
+
+body {
+  margin: 0px;
+  padding: 0px;
+}
+
+.backBtn {
+  margin-left: 0.4rem;
+  margin-top: 0.3rem;
+  width: 5rem;
+  border-radius: 0.2rem;
+  border: 1.5px solid rgb(202, 200, 200);
+  padding: 0.15rem 0.4rem;
+  background-color: white;
+  height: 2rem;
+  color: black;
+}
+
+.backBtn:active {
+  background-color: #7ceece;
+  color: white;
+}
+
+.submitBtn {
+  margin-top: 0.3rem;
+  height: 2rem;
+  width: 5rem;
+  border-radius: 0.2rem;
+  border: 1.5px solid #81d6be;
+  padding: 0.15rem 0.4rem;
+  background-color: #7ceece;
+}
+
+.submitBtn:active {
+  background-color: white;
+  background-color: #7ceece;
+}
+
+.warningTxt {
+  color: rgb(227, 106, 124);
+}
+
+.centered {
+  text-align: center;
+  margin: 50% auto;
+}

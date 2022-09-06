@@ -1,0 +1,50 @@
+.header {
+  font-weight: bold;
+  font-size: 0.8rem;
+  background-color: white;
+  position: fixed;
+  width: 95%;
+  margin-top: 0px;
+  padding: 0.3em 0;
+  border-bottom: 0.15rem solid #7ceece;
+}
+
+.plant {
+  display: flex;
+  width: 145px;
+  align-items: center;
+}
+
+.plant:active,
+.lastWatered:active,
+.daysHeader:active {
+  color: #7ceece;
+  transform: translateY(-3px);
+}
+
+.lastWatered {
+  width: 65px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.daysHeader {
+  display: flex;
+  width: 75px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.freqHeader {
+  width: 100px;
+  display: flex;
+  align-items: center;
+}
+
+.water {
+  height: 19px;
+  width: 20px;
+}
