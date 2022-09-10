@@ -10,6 +10,8 @@ import {
   getRandomInt,
   checkIfDateLesserThanToday,
 } from "../../utils/Utils";
+import { useDispatch } from "react-redux";
+import { addPlant } from "../../store/plants-slice";
 
 const NewPlantForm = (props) => {
   const { status, sendRequest } = useHttp();
@@ -17,6 +19,7 @@ const NewPlantForm = (props) => {
   const clickBackHandler = () => {
     navigate(-1);
   };
+  const dispatch = useDispatch();
 
   const {
     enteredValue: enteredName,
@@ -105,6 +108,16 @@ const NewPlantForm = (props) => {
       frequency: enteredFrequency,
       daysSinceLast: calculateDaysSinceLast(enteredLastWatered),
     });
+
+    dispatch(
+      addPlant({
+        id: getRandomInt(),
+        name: capitalize(enteredName),
+        lastWatered: enteredLastWatered,
+        frequency: enteredFrequency,
+        daysSinceLast: calculateDaysSinceLast(enteredLastWatered),
+      })
+    );
 
     resetName();
     resetFrequency();
