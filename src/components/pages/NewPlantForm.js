@@ -148,7 +148,7 @@ const NewPlantForm = (props) => {
       <form onSubmit={formSubmitHandler}>
         {status === "pending" && (
           <div>
-            <h1>LOADING!</h1>
+            <h1>LOADING!!</h1>
           </div>
         )}
         <h2 className={classes.header}>Add a new plant!</h2>
