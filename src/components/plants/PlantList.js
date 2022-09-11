@@ -11,9 +11,12 @@ import {
   sortNamesAsc,
   sortNamesDesc,
 } from "../../utils/Utils";
+import { useSelector } from "react-redux";
 
 const PlantsList = (props) => {
-  const { allPlantsData } = props;
+  const allPlantsData = useSelector((state) => state.plants.allPlants);
+  console.log(allPlantsData);
+  // const { allPlantsData } = props;
   const [sortedPlantsData, setSortedPlantsData] = useState([]);
   const [daysAsc, setDaysAsc] = useState();
   const [datesAsc, setDatesAsc] = useState();
