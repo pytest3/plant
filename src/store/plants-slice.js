@@ -1,4 +1,4 @@
-import { createSlice, current } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 // const initialState = {
 
 //     id: getRandomInt(),
@@ -17,7 +17,7 @@ import { createSlice, current } from "@reduxjs/toolkit";
 // };
 
 const initialState = {
-  plants: [],
+  allPlants: [],
 };
 
 const plantsSlice = createSlice({
@@ -25,8 +25,7 @@ const plantsSlice = createSlice({
   initialState,
   reducers: {
     addPlant: (state, action) => {
-      state.plants.push(action.payload);
-      console.log(current(state.plants));
+      state.allPlants.push(action.payload);
     },
   },
 });

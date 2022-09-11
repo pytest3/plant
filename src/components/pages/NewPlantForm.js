@@ -11,6 +11,7 @@ import {
   checkIfDateLesserThanToday,
 } from "../../utils/Utils";
 import { useDispatch } from "react-redux";
+// import { sendPlantData } from "../../store/plants-actions";
 import { addPlant } from "../../store/plants-slice";
 
 const NewPlantForm = (props) => {
