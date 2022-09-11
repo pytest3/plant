@@ -12,27 +12,25 @@ export const uiSlice = createSlice({
   reducers: {
     sendNotification: (state, action) => {
       if (action.payload === "sending") {
-        console.log("sending");
         return {
           status: "sending",
           title: "Sending!",
           message: "Sending plants data..",
         };
       } else if (action.payload === "success") {
-        console.log("success");
         return {
           status: "success",
           title: "Success!",
           message: "Sent plants data!",
         };
       } else if (action.payload === "error") {
-        console.log("error");
         return {
           status: "error",
           title: "Error!",
           message: "Failed to send plants data",
         };
       }
+      return initialState;
     },
   },
 });
