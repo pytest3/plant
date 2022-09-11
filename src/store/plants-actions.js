@@ -1,4 +1,5 @@
 import { sendNotification } from "./ui-slice";
+import { refreshPlantList } from "./plants-slice";
 const URL =
   "https://allplants-b080e-default-rtdb.asia-southeast1.firebasedatabase.app/plants.json";
 
@@ -14,7 +15,6 @@ export const sendPlantData = (plantData) => {
       }
     };
     dispatch(sendNotification("sending"));
-    console.log("here");
     try {
       await sendData();
       dispatch(sendNotification("success"));
@@ -31,10 +31,14 @@ export const getPlantData = () => {
       if (!response.ok) {
         throw new Error("Fetching data failed..");
       }
+      const data = await response.json();
+      return data;
     };
     dispatch(sendNotification("sending"));
     try {
-      await getData();
+      const plantData = await getData();
+      console.log(plantData);
+      dispatch(refreshPlantList(plantData));
       dispatch(sendNotification("success"));
     } catch (e) {
       dispatch(sendNotification("error"));

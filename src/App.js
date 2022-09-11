@@ -6,14 +6,26 @@ import { Route, Routes, Navigate } from "react-router-dom";
 import Layout from "./components/layout/Layout";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
-import { sendPlantData } from "./store/plants-actions";
+import { getPlantData, sendPlantData } from "./store/plants-actions";
+
+let initialRun = true;
 
 function App() {
   const plants = useSelector((state) => state.plants);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log("ran");
+    console.log("Getting plants");
+    dispatch(getPlantData());
+  }, [dispatch]);
+
+  useEffect(() => {
+    console.log("Sending plants");
+
+    if (initialRun) {
+      initialRun = false;
+      return;
+    }
     dispatch(sendPlantData(plants));
   }, [dispatch, plants]);
 

@@ -19,8 +19,6 @@ export const addNewPlant = async (plantData) => {
     throw new Error("Unable to add plant");
   }
 
-  console.log("adding plants to firebase...");
-
   const postData = await response.json();
 
   const { name: firebaseKey } = postData;
