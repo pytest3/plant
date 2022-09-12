@@ -1,4 +1,3 @@
-import { addNewPlant } from "../../lib/api";
 import { useNavigate } from "react-router-dom";
 import useHttp from "../../hooks/use-http";
 import useInput from "../../hooks/use-input";
@@ -11,11 +10,10 @@ import {
   checkIfDateLesserThanToday,
 } from "../../utils/Utils";
 import { useDispatch } from "react-redux";
-// import { sendPlantData } from "../../store/plants-actions";
 import { addPlant } from "../../store/plants-slice";
 
 const NewPlantForm = (props) => {
-  const { status, sendRequest } = useHttp();
+  const { status } = useHttp();
   const navigate = useNavigate();
   const clickBackHandler = () => {
     navigate(-1);
@@ -101,14 +99,6 @@ const NewPlantForm = (props) => {
     ) {
       return;
     }
-
-    await sendRequest(addNewPlant, {
-      id: getRandomInt(),
-      name: capitalize(enteredName),
-      lastWatered: enteredLastWatered,
-      frequency: enteredFrequency,
-      daysSinceLast: calculateDaysSinceLast(enteredLastWatered),
-    });
 
     dispatch(
       addPlant({
