@@ -2,6 +2,7 @@ import { parse, differenceInCalendarDays, format } from "date-fns";
 
 export const capitalize = (stringOfWords) => {
   const words = stringOfWords.split(" ");
+  console.log(words);
   const formattedWords = words.map((word) => {
     return word[0].toUpperCase() + word.slice(1).toLowerCase();
   });
@@ -43,7 +44,7 @@ export const sortNamesDesc = (data) => {
   return [...data].sort((a, b) => a.name.localeCompare(b.name)).reverse();
 };
 
-// Date object related
+// Date object related //
 
 export const calculateDaysSinceLast = (enteredDate) => {
   const today = new Date();
@@ -52,6 +53,7 @@ export const calculateDaysSinceLast = (enteredDate) => {
   return daysSinceLast;
 };
 
+// converts date from "yyyy-MM-dd" to "dd-MMM"
 export const formatLastWatered = (date) => {
   const formattedDate = format(parse(date, "yyyy-MM-dd", new Date()), "dd-MMM");
   return formattedDate;
