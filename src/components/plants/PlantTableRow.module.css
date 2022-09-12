@@ -1,0 +1,35 @@
+.rows {
+  display: contents;
+}
+
+.grid-item {
+  border-bottom: 0.5px solid #b7e1d5;
+  font-size: 0.8rem;
+  padding-bottom: 0.2rem;
+}
+
+.grid-item-2,
+.grid-item-3,
+.grid-item-5 {
+  display: flex;
+  justify-content: center;
+}
+
+.grid-item-4 {
+  padding-left: 0.3rem;
+}
+
+a {
+  color: black;
+  text-decoration: none;
+}
+
+.waterBtn {
+  background-color: white;
+  border: none;
+}
+
+.water {
+  height: 19px;
+  fill: #a9def9;
+}

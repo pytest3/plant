@@ -1,0 +1,19 @@
+.header {
+  display: contents;
+}
+
+.grid-item {
+  font-weight: bold;
+  font-size: 0.8rem;
+  border-bottom: 2px solid #7ceece;
+  display: flex;
+  align-items: center;
+  padding: 0.3rem 0rem;
+}
+
+.grid-item-2,
+.grid-item-3,
+.grid-item-4 {
+  text-align: center;
+  justify-content: center;
+}

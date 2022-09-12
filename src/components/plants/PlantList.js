@@ -1,8 +1,6 @@
-import PlantItem from "./PlantItem";
-import classes from "./PlantList.module.css";
 import { Fragment, useEffect, useState } from "react";
-import { useSearchParams, useParams } from "react-router-dom";
-import PlantListHeader from "./PlantListHeader";
+import { useSearchParams } from "react-router-dom";
+import PlantsTable from "./PlantTable";
 import {
   sortDaysAsc,
   sortDaysDesc,
@@ -13,21 +11,14 @@ import {
 } from "../../utils/Utils";
 import { useSelector } from "react-redux";
 
-const PlantsList = (props) => {
+const PlantsList = () => {
   const allPlantsData = useSelector((state) => state.plants.allPlants);
-  console.log(allPlantsData);
-  // const { allPlantsData } = props;
   const [sortedPlantsData, setSortedPlantsData] = useState([]);
   const [daysAsc, setDaysAsc] = useState();
   const [datesAsc, setDatesAsc] = useState();
   const [namesAsc, setNamesAsc] = useState(null);
   const [searchParams, setSearchParams] = useSearchParams();
   const currentSearchParams = searchParams.get("sort");
-
-  const updatedToTodayHandler = () => {
-    props.onUpdatedToToday();
-    return;
-  };
 
   const sortDaysHandler = () => {
     if (daysAsc) {
@@ -62,41 +53,31 @@ const PlantsList = (props) => {
   useEffect(() => {
     let sortedPlants;
     if (currentSearchParams === "days-desc") {
-      sortedPlants = sortDaysDesc(allPlantsData || []);
+      sortedPlants = sortDaysDesc(allPlantsData);
     } else if (currentSearchParams === "days-asc") {
-      sortedPlants = sortDaysAsc(allPlantsData || []);
+      sortedPlants = sortDaysAsc(allPlantsData);
     } else if (currentSearchParams === "dates-desc") {
-      sortedPlants = sortDatesDesc(allPlantsData || []);
+      sortedPlants = sortDatesDesc(allPlantsData);
     } else if (currentSearchParams === "dates-asc") {
-      sortedPlants = sortDatesAsc(allPlantsData || []);
+      sortedPlants = sortDatesAsc(allPlantsData);
     } else if (currentSearchParams === "names-desc") {
-      sortedPlants = sortNamesDesc(allPlantsData || []);
+      sortedPlants = sortNamesDesc(allPlantsData);
     } else if (currentSearchParams === "names-asc") {
-      sortedPlants = sortNamesAsc(allPlantsData || []);
+      sortedPlants = sortNamesAsc(allPlantsData);
     } else {
-      sortedPlants = sortNamesAsc(allPlantsData || []);
+      sortedPlants = sortNamesAsc(allPlantsData);
     }
     setSortedPlantsData(sortedPlants);
   }, [allPlantsData, currentSearchParams]);
 
   return (
     <Fragment>
-      <PlantListHeader
+      <PlantsTable
         onSortDays={sortDaysHandler}
         onSortDates={sortDatesHandler}
         onSortNames={sortNamesHandler}
-      />
-      <ul className={classes.list}>
-        {sortedPlantsData
-          ? sortedPlantsData.map((item) => (
-              <PlantItem
-                key={item.id}
-                plantInfo={item}
-                onUpdatedToToday={updatedToTodayHandler}
-              />
-            ))
-          : ""}
-      </ul>
+        sortedPlants={sortedPlantsData}
+      ></PlantsTable>
     </Fragment>
   );
 };

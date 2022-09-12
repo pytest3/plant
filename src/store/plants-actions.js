@@ -37,8 +37,7 @@ export const getPlantData = () => {
     dispatch(sendNotification("sending"));
     try {
       const plantData = await getData();
-      console.log(plantData);
-      dispatch(refreshPlantList(plantData));
+      dispatch(refreshPlantList({ allPlants: plantData.allPlants || [] }));
       dispatch(sendNotification("success"));
     } catch (e) {
       dispatch(sendNotification("error"));
