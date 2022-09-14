@@ -14,7 +14,7 @@ export const sendPlantData = (plantData) => {
         throw new Error("Cannot send data");
       }
     };
-    dispatch(sendNotification("sending"));
+    dispatch(sendNotification("pending"));
     try {
       await sendData();
       dispatch(sendNotification("success"));
@@ -34,7 +34,7 @@ export const getPlantData = () => {
       const data = await response.json();
       return data;
     };
-    dispatch(sendNotification("sending"));
+    dispatch(sendNotification("pending"));
     try {
       const plantData = await getData();
       dispatch(refreshPlantList({ allPlants: plantData.allPlants || [] }));
