@@ -4,6 +4,7 @@ const initialState = {
   status: "",
   title: "",
   message: "",
+  isModalShown: false,
 };
 
 export const uiSlice = createSlice({
@@ -11,9 +12,9 @@ export const uiSlice = createSlice({
   initialState,
   reducers: {
     sendNotification: (state, action) => {
-      if (action.payload === "sending") {
+      if (action.payload === "pending") {
         return {
-          status: "sending",
+          status: "pending",
           title: "Sending!",
           message: "Sending plants data..",
         };
@@ -32,8 +33,17 @@ export const uiSlice = createSlice({
       }
       return initialState;
     },
+    toggleModal: (state, action) => {
+      if (action.payload === "show") {
+        state.isModalShown = true;
+      } else if (action.payload === "hide") {
+        state.isModalShown = false;
+      } else {
+        state.isModalShown = !state.isModalShown;
+      }
+    },
   },
 });
 
 export default uiSlice.reducer;
-export const { sendNotification } = uiSlice.actions;
+export const { sendNotification, toggleModal } = uiSlice.actions;
