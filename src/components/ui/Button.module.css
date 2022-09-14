@@ -1,0 +1,13 @@
+.button {
+  background-color: white;
+  color: #3e977e;
+  border: 1px solid green;
+  border-radius: 1rem;
+  padding: 0.3rem 0.8rem;
+}
+
+.button:active {
+  border: 1px solid white;
+  transform: translateY(3px);
+  box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
+}
