@@ -7,27 +7,36 @@ import Layout from "./components/layout/Layout";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { getPlantData, sendPlantData } from "./store/plants-actions";
+import LoadingSpinner from "./components/ui/LoadingSpinner";
+import Card from "./components/ui/Card";
 
 let initialRun = true;
 
 function App() {
   const plants = useSelector((state) => state.plants);
   const dispatch = useDispatch();
+  const notification = useSelector((state) => state.ui);
 
   useEffect(() => {
-    console.log("Getting plants");
     dispatch(getPlantData());
   }, [dispatch]);
 
   useEffect(() => {
-    console.log("Sending plants");
-
     if (initialRun) {
       initialRun = false;
       return;
     }
     dispatch(sendPlantData(plants));
+    console.log("useEffect ran");
   }, [dispatch, plants]);
+
+  if (notification.status === "pending") {
+    return (
+      <div className="centered">
+        <LoadingSpinner></LoadingSpinner>
+      </div>
+    );
+  }
 
   return (
     <Layout>
