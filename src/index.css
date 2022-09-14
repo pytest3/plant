@@ -46,5 +46,8 @@ body {
 
 .centered {
   text-align: center;
-  margin: 50% auto;
+  position: fixed;
+  height: 100vh;
+  width: 95%;
+  background-color: green;
 }
