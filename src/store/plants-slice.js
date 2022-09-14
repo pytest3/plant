@@ -1,5 +1,4 @@
-import { createSlice, current } from "@reduxjs/toolkit";
-import { formatLastWatered } from "../utils/Utils";
+import { createSlice } from "@reduxjs/toolkit";
 import { format } from "date-fns";
 
 const initialState = {
