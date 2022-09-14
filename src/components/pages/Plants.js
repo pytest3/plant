@@ -1,17 +1,12 @@
 import React from "react";
+import { Fragment } from "react";
 import PlantList from "../plants/PlantList";
-import LoadingSpinner from "../ui/LoadingSpinner";
-
 const Plants = (props) => {
-  // if (status === "pending") {
-  //   return (
-  //     <div className="centered">
-  //       <LoadingSpinner />;
-  //     </div>
-  //   );
-  // }
-
-  return <PlantList />;
+  return (
+    <Fragment>
+      <PlantList />
+    </Fragment>
+  );
 };
 
 export default Plants;
