@@ -1,5 +1,6 @@
 import { Fragment, useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 import PlantsTable from "./PlantTable";
 import {
   sortDaysAsc,
@@ -9,7 +10,6 @@ import {
   sortNamesAsc,
   sortNamesDesc,
 } from "../../utils/Utils";
-import { useSelector } from "react-redux";
 
 const PlantsList = () => {
   const allPlantsData = useSelector((state) => state.plants.allPlants);
