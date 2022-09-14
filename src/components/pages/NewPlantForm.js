@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import useHttp from "../../hooks/use-http";
 import useInput from "../../hooks/use-input";
-import { Fragment } from "react";
+import React, { useState, Fragment } from "react";
 import classes from "./NewPlantForm.module.css";
 import {
   capitalize,
@@ -9,16 +9,29 @@ import {
   getRandomInt,
   checkIfDateLesserThanToday,
 } from "../../utils/Utils";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addPlant } from "../../store/plants-slice";
+import Modal from "../ui/Modal";
+import { toggleModal } from "../../store/ui-slice";
+import { useEffect } from "react";
 
-const NewPlantForm = (props) => {
+let formIsValid = false;
+
+const NewPlantForm = () => {
+  const isModalVisible = useSelector((state) => state.ui.isModalShown);
   const { status } = useHttp();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const clickBackHandler = () => {
     navigate(-1);
   };
-  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (formIsValid) {
+      dispatch(toggleModal("show"));
+      console.log(formIsValid);
+    }
+  }, [dispatch]);
 
   const {
     enteredValue: enteredName,
@@ -28,7 +41,6 @@ const NewPlantForm = (props) => {
     inputChangeHandler: nameChangeHandler,
     resetInput: resetName,
   } = useInput((value) => value.trim().length > 2);
-
   const {
     enteredValue: enteredLastWatered,
     hasError: lastWateredHasError,
@@ -37,7 +49,6 @@ const NewPlantForm = (props) => {
     inputChangeHandler: lastWateredChangeHandler,
     resetInput: resetLastWatered,
   } = useInput((value) => checkIfDateLesserThanToday(value));
-
   const {
     enteredValue: enteredFrequency,
     hasError: frequencyHasError,
@@ -46,7 +57,6 @@ const NewPlantForm = (props) => {
     inputChangeHandler: frequencyChangeHandler,
     resetInput: resetFrequency,
   } = useInput((value) => value.trim().length > 2);
-
   const {
     enteredValue: enteredLastFertilized,
     hasError: lastFertilizedHasError,
@@ -57,7 +67,6 @@ const NewPlantForm = (props) => {
   } = useInput((value) => {
     checkIfDateLesserThanToday(value);
   }, true);
-
   const {
     enteredValue: enteredLastInsecticided,
     hasError: lastInsecticidedHasError,
@@ -68,7 +77,6 @@ const NewPlantForm = (props) => {
   } = useInput((value) => {
     checkIfDateLesserThanToday(value);
   }, true);
-
   const {
     enteredValue: enteredLastSprayed,
     hasError: lastSprayedHasError,
@@ -79,8 +87,7 @@ const NewPlantForm = (props) => {
   } = useInput((value) => {
     checkIfDateLesserThanToday(value);
   }, true);
-
-  const formSubmitHandler = async (e) => {
+  const formSubmitHandler = (e) => {
     e.preventDefault();
 
     nameTouchHandler();
@@ -88,7 +95,6 @@ const NewPlantForm = (props) => {
     lastWateredTouchHandler();
     lastFertilizedTouchHandler();
     lastInsecticidedTouchHandler();
-
     if (
       !nameIsValid ||
       !lastWateredIsValid ||
@@ -99,7 +105,6 @@ const NewPlantForm = (props) => {
     ) {
       return;
     }
-
     dispatch(
       addPlant({
         id: getRandomInt(),
@@ -110,6 +115,7 @@ const NewPlantForm = (props) => {
       })
     );
 
+    formIsValid = true;
     resetName();
     resetFrequency();
     resetLastWatered();
@@ -136,6 +142,7 @@ const NewPlantForm = (props) => {
 
   return (
     <Fragment>
+      {isModalVisible && <Modal>Plant successfully added!</Modal>}
       <form onSubmit={formSubmitHandler}>
         {status === "pending" && (
           <div>
