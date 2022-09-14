@@ -8,7 +8,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { getPlantData, sendPlantData } from "./store/plants-actions";
 import LoadingSpinner from "./components/ui/LoadingSpinner";
-import Card from "./components/ui/Card";
 
 let initialRun = true;
 
