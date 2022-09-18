@@ -1,0 +1,30 @@
+.submitBtn {
+  display: block;
+  width: 100%;
+  border-radius: 0.2rem;
+  border: 1.5px solid #d62828;
+  padding: 0.5rem 0.4rem;
+  background-color: #d62828;
+  color: white;
+}
+
+.submitBtn:active {
+  background-color: white;
+  background-color: #7ceece;
+}
+
+.backBtn {
+  display: block;
+  width: 100%;
+  border-radius: 0.2rem;
+  border: 1.5px solid rgb(202, 200, 200);
+  padding: 0.5rem 0.4rem;
+  background-color: white;
+  color: black;
+  margin-top: 0.5rem;
+}
+
+.backBtn:active {
+  background-color: #7ceece;
+  color: white;
+}
