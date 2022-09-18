@@ -9,10 +9,12 @@ import {
   sortDatesDesc,
   sortNamesAsc,
   sortNamesDesc,
+  searchPlantsByName,
 } from "../../utils/Utils";
 
 const PlantsList = () => {
   const allPlantsData = useSelector((state) => state.plants.allPlants);
+  const searchTerm = useSelector((state) => state.plants.enteredSearchTerm);
   const [sortedPlantsData, setSortedPlantsData] = useState([]);
   const [daysAsc, setDaysAsc] = useState();
   const [datesAsc, setDatesAsc] = useState();
@@ -52,7 +54,10 @@ const PlantsList = () => {
 
   useEffect(() => {
     let sortedPlants;
-    if (currentSearchParams === "days-desc") {
+
+    if (searchTerm) {
+      sortedPlants = searchPlantsByName(allPlantsData, searchTerm);
+    } else if (currentSearchParams === "days-desc") {
       sortedPlants = sortDaysDesc(allPlantsData);
     } else if (currentSearchParams === "days-asc") {
       sortedPlants = sortDaysAsc(allPlantsData);
@@ -68,7 +73,7 @@ const PlantsList = () => {
       sortedPlants = sortNamesAsc(allPlantsData);
     }
     setSortedPlantsData(sortedPlants);
-  }, [allPlantsData, currentSearchParams]);
+  }, [allPlantsData, currentSearchParams, searchTerm]);
 
   return (
     <Fragment>
