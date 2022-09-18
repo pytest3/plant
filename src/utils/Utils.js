@@ -17,11 +17,21 @@ export const getRandomInt = () => {
 // Sorting related
 
 export const sortDaysAsc = (data) => {
-  return [...data].sort((a, b) => a.daysSinceLast - b.daysSinceLast);
+  return [...data].sort(
+    (a, b) =>
+      new Date() -
+      new Date(a.lastWatered) -
+      (new Date() - new Date(b.lastWatered))
+  );
 };
 
 export const sortDaysDesc = (data) => {
-  return [...data].sort((a, b) => b.daysSinceLast - a.daysSinceLast);
+  return [...data].sort(
+    (a, b) =>
+      new Date() -
+      new Date(b.lastWatered) -
+      (new Date() - new Date(a.lastWatered))
+  );
 };
 
 export const sortDatesAsc = (data) => {
@@ -42,6 +52,12 @@ export const sortNamesAsc = (data) => {
 
 export const sortNamesDesc = (data) => {
   return [...data].sort((a, b) => a.name.localeCompare(b.name)).reverse();
+};
+
+export const searchPlantsByName = (data, plantName) => {
+  return [...data].filter((plant) =>
+    plant.name.toLowerCase().includes(plantName)
+  );
 };
 
 // Date object related //
