@@ -1,18 +1,13 @@
 .header {
-  background-color: green;
+  background-color: #54808b;
   color: white;
   font-size: 1.5rem;
   font-weight: bold;
   padding: 1rem;
   text-align: left;
+  display: flex;
+  justify-content: space-between;
   /* padding: 0.8rem; */
-}
-
-.body {
-  color: black;
-  padding: 1rem;
-  text-align: left;
-  font-weight: 500;
 }
 
 footer {
@@ -39,8 +34,23 @@ footer {
   left: 0;
 }
 
-.addBtn {
-  background-color: green;
+/* .addBtn {
+  background-color: #2ec4b6;
   color: white;
   margin-bottom: 0.8rem;
+  border: none;
+}
+
+.backBtn {
+  background-color: white;
+  border: 1px solid #2ec4b6;
+  color: #414833;
+  margin-bottom: 0.8rem;
+} */
+
+.body {
+  color: black;
+  padding: 1rem;
+  text-align: left;
+  font-weight: 500;
 }
