@@ -1,14 +1,18 @@
 .header {
-  display: contents;
+  grid-area: header;
+  display: grid;
+  grid-template-columns: 37% 1fr 0.8fr 22% 6%;
+  align-self: flex-start;
 }
 
 .grid-item {
   font-weight: bold;
   font-size: 0.8rem;
-  border-bottom: 2px solid #7ceece;
+  color: #457b9d;
+  /* border-bottom: 2px solid #7ceece; */
   display: flex;
   align-items: center;
-  padding: 0.3rem 0rem;
+  /* background-color: white; */
 }
 
 .grid-item-2,
