@@ -12,7 +12,7 @@ import LoadingSpinner from "./components/ui/LoadingSpinner";
 let initialRun = true;
 
 function App() {
-  const plants = useSelector((state) => state.plants);
+  const plants = useSelector((state) => state.plants.allPlants);
   const dispatch = useDispatch();
   const notification = useSelector((state) => state.ui);
 
@@ -26,7 +26,7 @@ function App() {
       return;
     }
     dispatch(sendPlantData(plants));
-    console.log("useEffect ran");
+    console.log("Parent app useEffect ran");
   }, [dispatch, plants]);
 
   if (notification.status === "pending") {
