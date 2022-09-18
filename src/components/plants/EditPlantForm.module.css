@@ -8,10 +8,55 @@ h2 {
   color: #ccd5ae;
 }
 
-.lastWateredInput {
-  width: 45%;
-  line-height: 1.8rem;
+.label {
+  display: block;
+  margin: 0.5rem 0rem;
+  color: #1d3557;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.editPlantFormInput {
+  display: block;
+  width: 55%;
+  min-width: 55%;
+  -webkit-appearance: none;
+  padding: 0.3rem 1rem;
   background-color: white;
-  border: 0.5px solid gray;
-  /* color: #ccd5ae; */
+  border: 1px solid gray;
+  margin: 0.5rem 0rem 0.8rem;
+  border-radius: 0.25rem;
+  font-size: inherit;
+  height: 2rem;
+}
+
+.submitBtn {
+  display: block;
+  width: 100%;
+  border-radius: 0.2rem;
+  border: 1.5px solid #54808b;
+  padding: 0.5rem 0.4rem;
+  background-color: #54808b;
+  color: white;
+}
+
+.submitBtn:active {
+  background-color: white;
+  background-color: #7ceece;
+}
+
+.backBtn {
+  display: block;
+  width: 100%;
+  border-radius: 0.2rem;
+  border: 1.5px solid rgb(202, 200, 200);
+  padding: 0.5rem 0.4rem;
+  background-color: white;
+  color: black;
+  margin-top: 0.5rem;
+}
+
+.backBtn:active {
+  background-color: #7ceece;
+  color: white;
 }
