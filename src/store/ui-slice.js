@@ -31,7 +31,7 @@ export const uiSlice = createSlice({
           message: "Failed to send plants data",
         };
       }
-      return initialState;
+      // return initialState;
     },
     toggleModal: (state, action) => {
       if (action.payload === "show") {
