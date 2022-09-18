@@ -3,6 +3,9 @@ import { format } from "date-fns";
 
 const initialState = {
   allPlants: [],
+  currentPlantId: null,
+  enteredSearchTerm: null,
+  deleteConfirmation: null,
 };
 
 const plantsSlice = createSlice({
@@ -13,10 +16,9 @@ const plantsSlice = createSlice({
       state.allPlants.push(action.payload);
     },
     refreshPlantList: (state, action) => {
-      return action.payload;
+      state.allPlants = action.payload;
     },
     changeLastWateredToToday: (state, action) => {
-      console.log("yessir");
       const plantIndex = state.allPlants.findIndex(
         (item) => item.id === action.payload
       );
@@ -25,12 +27,39 @@ const plantsSlice = createSlice({
         "yyyy-MM-dd"
       );
     },
+    setCurrentPlantId: (state, action) => {
+      state.currentPlantId = action.payload;
+    },
+    searchPlantName: (state, action) => {
+      state.enteredSearchTerm = action.payload;
+    },
+    deletePlant: (state, action) => {
+      state.deleteConfirmation = true;
+      state.allPlants = state.allPlants.filter(
+        (plant) => plant.id !== action.payload
+      );
+    },
+    editPlant: (state, action) => {
+      state.allPlants.map((plant) => {
+        if (plant.id === action.payload.id) {
+          plant.lastWatered = action.payload.lastWatered;
+        }
+        return plant;
+      });
+    },
   },
 });
 
 //export action creators
-export const { addPlant, refreshPlantList, changeLastWateredToToday } =
-  plantsSlice.actions;
+export const {
+  addPlant,
+  refreshPlantList,
+  changeLastWateredToToday,
+  setCurrentPlantId,
+  searchPlantName,
+  deletePlant,
+  editPlant,
+} = plantsSlice.actions;
 
 //export reducers object
 export default plantsSlice.reducer;
