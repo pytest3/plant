@@ -1,17 +1,32 @@
 .rows {
-  display: contents;
+  display: grid;
+  grid-template-columns: 37% 1fr 0.8fr 22% 6%;
+  align-self: flex-start;
 }
 
 .grid-item {
-  border-bottom: 0.5px solid #b7e1d5;
+  /* border-bottom: 0.5px solid #b7e1d5; */
   font-size: 0.8rem;
-  padding-bottom: 0.2rem;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  padding: 0rem 0.2rem;
+}
+
+.grid-item-1 {
+  border-top-left-radius: 0.8rem;
+  border-bottom-left-radius: 0.8rem;
+}
+
+.grid-item-5 {
+  border-top-right-radius: 0.8rem;
+  border-bottom-right-radius: 0.8rem;
+  overflow: hidden;
 }
 
 .grid-item-2,
 .grid-item-3,
 .grid-item-5 {
-  display: flex;
   justify-content: center;
 }
 
