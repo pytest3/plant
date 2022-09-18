@@ -11,7 +11,7 @@ import {
 } from "../../utils/Utils";
 import { useDispatch, useSelector } from "react-redux";
 import { addPlant } from "../../store/plants-slice";
-import Modal from "../ui/Modal";
+import PlantAddedModal from "../ui/PlantAddedModal";
 import { toggleModal } from "../../store/ui-slice";
 import { useEffect } from "react";
 
@@ -29,7 +29,7 @@ const NewPlantForm = () => {
   useEffect(() => {
     if (formIsValid) {
       dispatch(toggleModal("show"));
-      console.log(formIsValid);
+      formIsValid = false;
     }
   }, [dispatch]);
 
@@ -89,7 +89,6 @@ const NewPlantForm = () => {
   }, true);
   const formSubmitHandler = (e) => {
     e.preventDefault();
-
     nameTouchHandler();
     frequencyTouchHandler();
     lastWateredTouchHandler();
@@ -114,7 +113,6 @@ const NewPlantForm = () => {
         daysSinceLast: calculateDaysSinceLast(enteredLastWatered),
       })
     );
-
     formIsValid = true;
     resetName();
     resetFrequency();
@@ -126,134 +124,151 @@ const NewPlantForm = () => {
 
   const nameClasses = !nameHasError
     ? `${classes.nameInput}`
-    : `${classes.error}`;
+    : `${classes.input}`;
   const dateClasses = !lastWateredHasError
     ? `${classes.dateInput}`
-    : `${classes.error}`;
+    : `${classes.input}`;
   const freqClasses = !frequencyHasError
     ? `${classes.freqInput}`
-    : `${classes.error}`;
+    : `${classes.input}`;
   const fertClasses = !lastFertilizedHasError
     ? `${classes.dateInput}`
-    : `${classes.error}`;
+    : `${classes.input}`;
   const insecticideClasses = !lastInsecticidedHasError
     ? `${classes.dateInput}`
-    : `${classes.error}`;
+    : `${classes.input}`;
 
   return (
     <Fragment>
-      {isModalVisible && <Modal>Plant successfully added!</Modal>}
-      <form onSubmit={formSubmitHandler}>
-        {status === "pending" && (
-          <div>
-            <h1>LOADING!!</h1>
-          </div>
-        )}
-        <h2 className={classes.header}>Add a new plant!</h2>
+      {isModalVisible && (
+        <PlantAddedModal header="Plant added!">
+          Plant successfully added!
+        </PlantAddedModal>
+      )}
+      <div className={classes.form}>
+        <form onSubmit={formSubmitHandler}>
+          {status === "pending" && (
+            <div>
+              <h1>LOADING!!</h1>
+            </div>
+          )}
+          {/* <h2 className={classes.header}>Add a new plant!</h2> */}
 
-        <label htmlFor="name">Name: </label>
-        <input
-          className={nameClasses}
-          type="text"
-          id="name"
-          onChange={nameChangeHandler}
-          onBlur={nameTouchHandler}
-          value={enteredName}
-        ></input>
-        {nameHasError && (
-          <div className="warningTxt">Please enter a valid plant name</div>
-        )}
+          <label className={classes.label} htmlFor="name">
+            Name:{" "}
+          </label>
+          <input
+            className={`${nameClasses} ${classes.input}`}
+            type="text"
+            id="name"
+            onChange={nameChangeHandler}
+            onBlur={nameTouchHandler}
+            value={enteredName}
+          ></input>
+          {nameHasError && (
+            <div className="warningTxt">Please enter a valid plant name</div>
+          )}
 
-        <label htmlFor="lastWatered">Last watered: </label>
-        <input
-          className={dateClasses}
-          type="date"
-          id="lastWatered"
-          onChange={lastWateredChangeHandler}
-          onBlur={lastWateredTouchHandler}
-          value={enteredLastWatered}
-        ></input>
-        {lastWateredHasError && (
-          <div className="warningTxt">
-            Please enter a valid last watered date
-          </div>
-        )}
+          <label className={classes.label} htmlFor="lastWatered">
+            Last watered:
+          </label>
+          <input
+            className={`${dateClasses} ${classes.input}`}
+            type="date"
+            id="lastWatered"
+            onChange={lastWateredChangeHandler}
+            onBlur={lastWateredTouchHandler}
+            value={enteredLastWatered}
+          ></input>
+          {lastWateredHasError && (
+            <div className="warningTxt">
+              Please enter a valid last watered date
+            </div>
+          )}
 
-        <label htmlFor="frequency">Frequency: </label>
-        <input
-          className={freqClasses}
-          type="text"
-          id="frequency"
-          onChange={frequencyChangeHandler}
-          onBlur={frequencyTouchHandler}
-          value={enteredFrequency}
-        ></input>
-        {frequencyHasError && (
-          <div className="warningTxt">
-            Please enter a valid watering frequency
-          </div>
-        )}
+          <label className={`${classes.label}`} htmlFor="frequency">
+            Frequency:
+          </label>
+          <input
+            className={`${freqClasses} ${classes.input}`}
+            type="text"
+            id="frequency"
+            onChange={frequencyChangeHandler}
+            onBlur={frequencyTouchHandler}
+            value={enteredFrequency}
+          ></input>
+          {frequencyHasError && (
+            <div className="warningTxt">
+              Please enter a valid watering frequency
+            </div>
+          )}
 
-        <label htmlFor="lastFertilized">
-          Last fertilized: <span className={classes.optional}>(optional)</span>
-        </label>
-        <input
-          className={fertClasses}
-          type="date"
-          id="lastFertilized"
-          onChange={lastFertilizedChangeHandler}
-          onBlur={lastFertilizedTouchHandler}
-          value={enteredLastFertilized}
-        ></input>
-        {lastFertilizedHasError && (
-          <div className="warningTxt">
-            Please enter a valid last fertilized date
-          </div>
-        )}
+          <label className={classes.label} htmlFor="lastFertilized">
+            Last fertilized:
+            <span className={classes.optional}>(optional)</span>
+          </label>
+          <input
+            className={`${fertClasses} ${classes.input}`}
+            type="date"
+            id="lastFertilized"
+            onChange={lastFertilizedChangeHandler}
+            onBlur={lastFertilizedTouchHandler}
+            value={enteredLastFertilized}
+          ></input>
+          {lastFertilizedHasError && (
+            <div className="warningTxt">
+              Please enter a valid last fertilized date
+            </div>
+          )}
 
-        <label htmlFor="lastInsecticided">
-          Last insecticided:
-          <span className={classes.optional}> (optional)</span>
-        </label>
-        <input
-          className={insecticideClasses}
-          type="date"
-          id="lastInsecticided"
-          onChange={lastInsecticidedChangeHandler}
-          onBlur={lastInsecticidedTouchHandler}
-          value={enteredLastInsecticided}
-        ></input>
-        {lastInsecticidedHasError && (
-          <div className="warningTxt">
-            Please enter a valid last insecticided date
-          </div>
-        )}
+          <label className={classes.label} htmlFor="lastInsecticided">
+            Last insecticided:
+            <span className={classes.optional}> (optional)</span>
+          </label>
+          <input
+            className={`${insecticideClasses} ${classes.input}`}
+            type="date"
+            id="lastInsecticided"
+            onChange={lastInsecticidedChangeHandler}
+            onBlur={lastInsecticidedTouchHandler}
+            value={enteredLastInsecticided}
+          ></input>
+          {lastInsecticidedHasError && (
+            <div className="warningTxt">
+              Please enter a valid last insecticided date
+            </div>
+          )}
 
-        <label htmlFor="lastSprayed">
-          Last sprayed:
-          <span className={classes.optional}> (optional)</span>
-        </label>
-        <input
-          className={insecticideClasses}
-          type="date"
-          id="lastSprayed"
-          onChange={lastSprayedChangeHandler}
-          onBlur={lastSprayedTouchHandler}
-          value={enteredLastSprayed}
-        ></input>
-        {lastSprayedHasError && (
-          <div className="warningTxt">
-            Please enter a valid last sprayed date
-          </div>
-        )}
+          <label className={classes.label} htmlFor="lastSprayed">
+            Last sprayed:
+            <span className={classes.optional}> (optional)</span>
+          </label>
+          <input
+            className={`${insecticideClasses} ${classes.input}`}
+            type="date"
+            id="lastSprayed"
+            onChange={lastSprayedChangeHandler}
+            onBlur={lastSprayedTouchHandler}
+            value={enteredLastSprayed}
+          ></input>
+          {lastSprayedHasError && (
+            <div className="warningTxt">
+              Please enter a valid last sprayed date
+            </div>
+          )}
 
-        <button className="submitBtn" type="submit">
-          Submit
-        </button>
-        <button className="backBtn" type="button" onClick={clickBackHandler}>
-          Back
-        </button>
-      </form>
+          <button className={classes.submitBtn} type="submit">
+            Submit
+          </button>
+          <button
+            className={classes.backBtn}
+            type="button"
+            onClick={clickBackHandler}
+          >
+            Back
+          </button>
+        </form>
+      </div>
     </Fragment>
   );
 };

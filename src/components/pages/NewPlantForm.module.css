@@ -1,11 +1,36 @@
-input,
-label {
+.form {
+  margin-top: 2rem;
+  padding: 1rem;
+  border-radius: 0.8rem;
+  background-color: #edede9;
+  max-height: 85vh;
+}
+
+.label {
   display: block;
-  margin: 0.4rem 0rem;
+  margin: 0.5rem 0rem;
+  color: #1d3557;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.input {
+  display: block;
+  width: 55%;
+  min-width: 55%;
+  -webkit-appearance: none;
+  padding: 0.3rem 1rem;
+  background-color: white;
+  border: 1px solid gray;
+  margin: 0.5rem 0rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: inherit;
+  height: 2rem;
 }
 
 .header {
-  margin-bottom: 0px;
+  margin: 0;
+  color: black;
 }
 
 .error {
@@ -16,17 +41,38 @@ label {
   height: 1.8rem;
 }
 
-.nameInput,
-.dateInput,
-.freqInput {
-  width: 45%;
-  height: 1.8rem;
-  background-color: white;
-  border: 0.5px solid gray;
-  border-radius: 0.3rem;
-}
-
 .optional {
   font-size: 0.7rem;
   color: rgb(187, 183, 183);
+}
+
+.submitBtn {
+  display: block;
+  width: 100%;
+  border-radius: 0.2rem;
+  border: 1.5px solid #54808b;
+  padding: 0.5rem 0.4rem;
+  background-color: #54808b;
+  color: white;
+}
+
+.submitBtn:active {
+  background-color: white;
+  background-color: #7ceece;
+}
+
+.backBtn {
+  display: block;
+  width: 100%;
+  border-radius: 0.2rem;
+  border: 1.5px solid rgb(202, 200, 200);
+  padding: 0.5rem 0.4rem;
+  background-color: white;
+  color: black;
+  margin-top: 0.5rem;
+}
+
+.backBtn:active {
+  background-color: #7ceece;
+  color: white;
 }
