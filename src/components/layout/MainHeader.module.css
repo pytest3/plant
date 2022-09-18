@@ -3,12 +3,12 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  top: 0;
-  width: 100%;
-  background-color: #7ceece;
+  top: 2%;
+  left: 5%;
+  width: 90%;
+  background-color: #54808b;
   color: white;
   margin: 0px;
-  padding: 0.8rem 0.8rem 0.8rem 0.8rem;
   height: 4rem;
 }
 
