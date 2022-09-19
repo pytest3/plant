@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import PlantDetailModal from "../ui/PlantDetailModal";
+import PlantDetailModal from "../ui/Modals/PlantDetailModal";
 import classes from "./PlantTable.module.css";
 import PlantTableHeader from "./PlantTableHeader";
 import PlantTableRow from "./PlantTableRow";

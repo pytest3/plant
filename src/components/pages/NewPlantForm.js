@@ -11,7 +11,7 @@ import {
 } from "../../utils/Utils";
 import { useDispatch, useSelector } from "react-redux";
 import { addPlant } from "../../store/plants-slice";
-import PlantAddedModal from "../ui/PlantAddedModal";
+import PlantAddedModal from "../ui/Modals/PlantAddedModal";
 import { toggleModal } from "../../store/ui-slice";
 import { useEffect } from "react";
 

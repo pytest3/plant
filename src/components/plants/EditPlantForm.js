@@ -9,21 +9,28 @@ import { editPlant } from "../../store/plants-slice";
 const EditPlantForm = (props) => {
   const dispatch = useDispatch();
   const currPlantId = useSelector((state) => state.plants.currentPlantId);
+  const { plantInfo } = props;
 
-  const { name, lastWatered } = props;
-  const [dateInput, setDateInput] = useState(lastWatered);
+  // const [editedLastFert, setEditedLastFertHandler] = useState(
+  //   plantInfo.lastWatered
+  // );
 
-  const [editedLastWatered, setEditedLastWatered] = useState("");
-  useEffect(() => {
-    setDateInput(lastWatered);
-  }, [lastWatered]);
+  const [editedLastWatered, setEditedLastWatered] = useState(
+    plantInfo.lastWatered
+  );
+  const [editedName, setEditedName] = useState(plantInfo.name);
 
-  const dateInputHandler = (e) => {
-    setDateInput(e.target.value);
-  };
+  // const editedLastFertHandler = (e) => {
+  //   setEditedLastFertHandler(e.target.value);
+  // };
 
   const editedLastWateredHandler = (e) => {
     setEditedLastWatered(e.target.value);
+  };
+
+  const editedNameHandler = (e) => {
+    console.log(e.target.value);
+    setEditedName(e.target.value);
   };
 
   const backBtnClickHandler = () => {
@@ -32,28 +39,46 @@ const EditPlantForm = (props) => {
 
   const formSubmitHandler = (e) => {
     e.preventDefault();
-    dispatch(editPlant({ id: currPlantId, lastWatered: editedLastWatered }));
+    dispatch(
+      editPlant({
+        id: currPlantId,
+        lastWatered: editedLastWatered,
+        name: editedName,
+      })
+    );
     return;
   };
   return (
     <Fragment>
       <form onSubmit={formSubmitHandler}>
-        <label className={classes.label}>Last watered: </label>
+        <label className={classes.label} for="name">
+          Name:
+        </label>
+        <input
+          type="text"
+          id="name"
+          value={editedName}
+          onChange={editedNameHandler}
+          className={classes.editPlantFormInput}
+        ></input>
+        <label className={classes.label} for="lastWatered">
+          Last watered:{" "}
+        </label>
         <input
           type="date"
-          id="date"
+          id="lastWatered"
           value={editedLastWatered}
           onChange={editedLastWateredHandler}
           className={classes.editPlantFormInput}
         ></input>
-        <label className={classes.label}>Last fertilized: </label>
+        {/* <label className={classes.label}>Last fertilized: </label>
         <input
           type="date"
           id="date"
-          value={dateInput}
-          onChange={dateInputHandler}
+          value={editedLastFert}
+          onChange={editedLastFertHandler}
           className={classes.editPlantFormInput}
-        ></input>
+        ></input> */}
         <button type="submit" className={classes.submitBtn}>
           Update
         </button>

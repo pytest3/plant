@@ -43,6 +43,7 @@ const plantsSlice = createSlice({
       state.allPlants.map((plant) => {
         if (plant.id === action.payload.id) {
           plant.lastWatered = action.payload.lastWatered;
+          plant.name = action.payload.name;
         }
         return plant;
       });
