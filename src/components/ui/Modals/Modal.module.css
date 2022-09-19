@@ -1,0 +1,56 @@
+.header {
+  background-color: #54808b;
+  color: white;
+  font-size: 1.5rem;
+  font-weight: bold;
+  padding: 1rem;
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+  /* padding: 0.8rem; */
+}
+
+footer {
+  padding: 1rem;
+  margin-left: auto;
+}
+
+.modal {
+  position: fixed;
+  width: 90%;
+  z-index: 100;
+  top: 30vh;
+  left: 5%;
+  overflow: hidden;
+}
+
+.backdrop {
+  background-color: rgb(49, 47, 47, 0.7);
+  height: 100vh;
+  width: 100%;
+  z-index: 10;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+/* .addBtn {
+  background-color: #2ec4b6;
+  color: white;
+  margin-bottom: 0.8rem;
+  border: none;
+}
+
+.backBtn {
+  background-color: white;
+  border: 1px solid #2ec4b6;
+  color: #414833;
+  margin-bottom: 0.8rem;
+} */
+
+.body {
+  color: black;
+  padding: 1rem;
+  text-align: left;
+  font-weight: 500;
+}
