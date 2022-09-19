@@ -13,12 +13,7 @@ import DeleteConfirmationForm from "../plants/DeleteConfirmationForm";
 
 const PlantDetailModal = () => {
   const [askToDelete, setAskToDelete] = useState(false);
-  const [deleteConfirmed, setDeleteConfirmed] = useState(false);
 
-  const dispatch = useDispatch();
-  // const deleteConfirmation = useSelector(
-  //   (state) => state.plants.deleteConfirmation
-  // );
   const plantId = useSelector((state) => state.plants.currentPlantId);
   const plantData = useSelector((state) => state.plants.allPlants).find(
     (plant) => plant.id === plantId
