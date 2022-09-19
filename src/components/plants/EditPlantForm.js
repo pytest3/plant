@@ -7,7 +7,6 @@ import { toggleModal } from "../../store/ui-slice";
 import { editPlant } from "../../store/plants-slice";
 
 const EditPlantForm = (props) => {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   const currPlantId = useSelector((state) => state.plants.currentPlantId);
 
@@ -33,7 +32,6 @@ const EditPlantForm = (props) => {
 
   const formSubmitHandler = (e) => {
     e.preventDefault();
-    console.log(currPlantId);
     dispatch(editPlant({ id: currPlantId, lastWatered: editedLastWatered }));
     return;
   };
