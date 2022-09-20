@@ -71,14 +71,6 @@ const EditPlantForm = (props) => {
           onChange={editedLastWateredHandler}
           className={classes.editPlantFormInput}
         ></input>
-        {/* <label className={classes.label htmlFor="stuff"}>Last fertilized: </label>
-        <input
-          type="date"
-          id="stuff"
-          value={editedLastFert}
-          onChange={editedLastFertHandler}
-          className={classes.editPlantFormInput}
-        ></input> */}
         <button type="submit" className={classes.submitBtn}>
           Update
         </button>
