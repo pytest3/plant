@@ -14,8 +14,7 @@ import { addPlant } from "../../store/plants-slice";
 import PlantAddedModal from "../ui/Modals/PlantAddedModal";
 import { toggleModal } from "../../store/ui-slice";
 import { useEffect } from "react";
-import { storage } from "../../firebase";
-import { ref, uploadBytes } from "firebase/storage";
+import { uploadPhotoToFireBase } from "../../utils/Firebase-utils";
 
 let formIsValid = false;
 
@@ -95,14 +94,6 @@ const NewPlantForm = () => {
   }, true);
 
   const formSubmitHandler = (e) => {
-    const uploadImage = () => {
-      if (imageUpload == null) {
-        return;
-      }
-      const imageRef = ref(storage, `images/${id}`);
-      uploadBytes(imageRef, imageUpload).then(() => alert("Image uploaded"));
-    };
-
     e.preventDefault();
     nameTouchHandler();
     frequencyTouchHandler();
@@ -119,7 +110,14 @@ const NewPlantForm = () => {
     ) {
       return;
     }
+
     const id = getRandomInt();
+
+    if (imageUpload == null) {
+      return;
+    } else {
+      uploadPhotoToFireBase(imageUpload, id);
+    }
 
     dispatch(
       addPlant({
@@ -130,8 +128,6 @@ const NewPlantForm = () => {
         daysSinceLast: calculateDaysSinceLast(enteredLastWatered),
       })
     );
-
-    uploadImage();
 
     formIsValid = true;
     resetName();
