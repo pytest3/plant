@@ -14,16 +14,22 @@ import { addPlant } from "../../store/plants-slice";
 import PlantAddedModal from "../ui/Modals/PlantAddedModal";
 import { toggleModal } from "../../store/ui-slice";
 import { useEffect } from "react";
+import { storage } from "../../firebase";
+import { ref, uploadBytes } from "firebase/storage";
 
 let formIsValid = false;
 
 const NewPlantForm = () => {
+  const [imageUpload, setImageUpload] = useState(null);
   const isModalVisible = useSelector((state) => state.ui.isModalShown);
   const { status } = useHttp();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const clickBackHandler = () => {
     navigate(-1);
+  };
+  const imageChangeHandler = (e) => {
+    setImageUpload(e.target.files[0]);
   };
 
   useEffect(() => {
@@ -87,7 +93,16 @@ const NewPlantForm = () => {
   } = useInput((value) => {
     checkIfDateLesserThanToday(value);
   }, true);
+
   const formSubmitHandler = (e) => {
+    const uploadImage = () => {
+      if (imageUpload == null) {
+        return;
+      }
+      const imageRef = ref(storage, `images/${id}`);
+      uploadBytes(imageRef, imageUpload).then(() => alert("Image uploaded"));
+    };
+
     e.preventDefault();
     nameTouchHandler();
     frequencyTouchHandler();
@@ -104,15 +119,20 @@ const NewPlantForm = () => {
     ) {
       return;
     }
+    const id = getRandomInt();
+
     dispatch(
       addPlant({
-        id: getRandomInt(),
+        id,
         name: capitalize(enteredName),
         lastWatered: enteredLastWatered,
         frequency: enteredFrequency,
         daysSinceLast: calculateDaysSinceLast(enteredLastWatered),
       })
     );
+
+    uploadImage();
+
     formIsValid = true;
     resetName();
     resetFrequency();
@@ -152,7 +172,6 @@ const NewPlantForm = () => {
               <h1>LOADING!!</h1>
             </div>
           )}
-          {/* <h2 className={classes.header}>Add a new plant!</h2> */}
 
           <label className={classes.label} htmlFor="name">
             Name:{" "}
@@ -204,7 +223,7 @@ const NewPlantForm = () => {
           )}
 
           <label className={classes.label} htmlFor="lastFertilized">
-            Last fertilized:
+            Last fertilized:{" "}
             <span className={classes.optional}>(optional)</span>
           </label>
           <input
@@ -222,7 +241,7 @@ const NewPlantForm = () => {
           )}
 
           <label className={classes.label} htmlFor="lastInsecticided">
-            Last insecticided:
+            Last insecticided:{" "}
             <span className={classes.optional}> (optional)</span>
           </label>
           <input
@@ -240,8 +259,7 @@ const NewPlantForm = () => {
           )}
 
           <label className={classes.label} htmlFor="lastSprayed">
-            Last sprayed:
-            <span className={classes.optional}> (optional)</span>
+            Last sprayed: <span className={classes.optional}> (optional)</span>
           </label>
           <input
             className={`${insecticideClasses} ${classes.input}`}
@@ -256,6 +274,12 @@ const NewPlantForm = () => {
               Please enter a valid last sprayed date
             </div>
           )}
+
+          <label className={classes.label} htmlFor="image">
+            Upload an image:{" "}
+            <span className={classes.optional}>(optional)</span>
+          </label>
+          <input id="image" type="file" onChange={imageChangeHandler}></input>
 
           <button className={classes.submitBtn} type="submit">
             Submit
