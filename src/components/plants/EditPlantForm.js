@@ -10,19 +10,10 @@ const EditPlantForm = (props) => {
   const dispatch = useDispatch();
   const currPlantId = useSelector((state) => state.plants.currentPlantId);
   const { plantInfo } = props;
-
-  // const [editedLastFert, setEditedLastFertHandler] = useState(
-  //   plantInfo.lastWatered
-  // );
-
   const [editedLastWatered, setEditedLastWatered] = useState(
     plantInfo.lastWatered
   );
   const [editedName, setEditedName] = useState(plantInfo.name);
-
-  // const editedLastFertHandler = (e) => {
-  //   setEditedLastFertHandler(e.target.value);
-  // };
 
   const editedLastWateredHandler = (e) => {
     setEditedLastWatered(e.target.value);
@@ -35,6 +26,12 @@ const EditPlantForm = (props) => {
 
   const backBtnClickHandler = () => {
     dispatch(toggleModal("hide"));
+  };
+
+  const uploadPhotoHandler = (e) => {
+    const uploadedPhoto = e.target.files[0];
+
+    return;
   };
 
   const formSubmitHandler = (e) => {
@@ -52,8 +49,8 @@ const EditPlantForm = (props) => {
     <Fragment>
       <form onSubmit={formSubmitHandler}>
         <img
-          alt="alocasia-frydek"
           className={classes.image}
+          alt={plantInfo.name}
           src="https://www.thespruce.com/thmb/R156pwCZJEoT3prZsBP_PX-n0gM=/941x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/alocasia-frydek-plant-profile-ce6a16be606948a8a87217d335a6816f.jpg"
         ></img>
         <label className={classes.label} htmlFor="name">
@@ -75,6 +72,15 @@ const EditPlantForm = (props) => {
           value={editedLastWatered}
           onChange={editedLastWateredHandler}
           className={classes.editPlantFormInput}
+        ></input>
+        <label className={classes.label} htmlFor="uploadPhoto">
+          Upload photo:{" "}
+        </label>
+        <input
+          type="file"
+          id="uploadPhoto"
+          onChange={uploadPhotoHandler}
+          className={classes.uploadPhoto}
         ></input>
         <button type="submit" className={classes.submitBtn}>
           Update
