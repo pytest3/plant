@@ -8,18 +8,17 @@ import {
 } from "../../store/plants-slice";
 import { toggleModal } from "../../store/ui-slice";
 import { useNavigate } from "react-router-dom";
+import { Fragment } from "react";
 
 const PlantTableRow = (props) => {
   const navigate = useNavigate();
-
-  const { name, lastWatered, frequency, id } = props.plantInfo;
   const dispatch = useDispatch();
+  const { name, lastWatered, frequency, id } = props.plantInfo;
 
   const formSubmitHandler = async (e) => {
     e.preventDefault();
     dispatch(changeLastWateredToToday(id));
     navigate("/plants");
-
     return;
   };
 
@@ -30,30 +29,32 @@ const PlantTableRow = (props) => {
   };
 
   return (
-    <div className={classes.rows}>
-      <div
-        onClick={nameClickHandler}
-        className={`${classes["grid-item"]} ${classes["grid-item-1"]}`}
-      >
-        {name}
+    <Fragment>
+      <div className={classes.rows}>
+        <div
+          onClick={nameClickHandler}
+          className={`${classes["grid-item"]} ${classes["grid-item-1"]}`}
+        >
+          {name}
+        </div>
+        <div className={`${classes["grid-item"]} ${classes["grid-item-2"]}`}>
+          {formatLastWatered(lastWatered)}
+        </div>
+        <div className={`${classes["grid-item"]} ${classes["grid-item-3"]}`}>
+          {calculateDaysSinceLast(lastWatered)}
+        </div>
+        <div className={`${classes["grid-item"]} ${classes["grid-item-4"]}`}>
+          {frequency}
+        </div>
+        <div className={`${classes["grid-item"]} ${classes["grid-item-5"]}`}>
+          <form onSubmit={formSubmitHandler}>
+            <button className={classes.waterBtn}>
+              <WaterSVG className={classes.water} />
+            </button>
+          </form>
+        </div>
       </div>
-      <div className={`${classes["grid-item"]} ${classes["grid-item-2"]}`}>
-        {formatLastWatered(lastWatered)}
-      </div>
-      <div className={`${classes["grid-item"]} ${classes["grid-item-3"]}`}>
-        {calculateDaysSinceLast(lastWatered)}
-      </div>
-      <div className={`${classes["grid-item"]} ${classes["grid-item-4"]}`}>
-        {frequency}
-      </div>
-      <div className={`${classes["grid-item"]} ${classes["grid-item-5"]}`}>
-        <form onSubmit={formSubmitHandler}>
-          <button className={classes.waterBtn}>
-            <WaterSVG className={classes.water} />
-          </button>
-        </form>
-      </div>
-    </div>
+    </Fragment>
   );
 };
 
