@@ -51,6 +51,11 @@ const EditPlantForm = (props) => {
   return (
     <Fragment>
       <form onSubmit={formSubmitHandler}>
+        <img
+          alt="alocasia-frydek"
+          className={classes.image}
+          src="https://www.thespruce.com/thmb/R156pwCZJEoT3prZsBP_PX-n0gM=/941x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/alocasia-frydek-plant-profile-ce6a16be606948a8a87217d335a6816f.jpg"
+        ></img>
         <label className={classes.label} htmlFor="name">
           Name:
         </label>
