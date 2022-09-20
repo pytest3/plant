@@ -24,7 +24,7 @@ function App() {
   }, [dispatch]);
 
   useEffect(() => {
-    downloadPhotoInfo();
+    dispatch(downloadPhotoInfo());
   }, [dispatch]);
 
   useEffect(() => {
