@@ -26,7 +26,6 @@ const PlantTableRow = (props) => {
   const nameClickHandler = () => {
     dispatch(toggleModal("show"));
     dispatch(setCurrentPlantId(id));
-    console.log(id);
     return;
   };
 
