@@ -4,8 +4,7 @@ import { storage } from "../firebase";
 import { refreshPhotos } from "./photos-slice";
 
 export const downloadPhotoInfo = () => {
-  return async () => {
-    const dispatch = useDispatch();
+  return async (dispatch) => {
     const imageListRef = ref(storage, "images/");
     // listAll returns a refrence object
     // {items: [array of photos' reference], prefixes: [array of photos' prefix]}
@@ -18,9 +17,12 @@ export const downloadPhotoInfo = () => {
         getMetadata(item).then((metaData) => metaData.name)
       )
     );
+    console.log(photoIds);
     const photoList = photoUrls.map((url, index) => {
       return { id: photoIds[index], url };
     });
+    console.log(photoList);
+
     dispatch(refreshPhotos(photoList));
   };
 };
