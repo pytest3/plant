@@ -51,7 +51,7 @@ const EditPlantForm = (props) => {
   return (
     <Fragment>
       <form onSubmit={formSubmitHandler}>
-        <label className={classes.label} for="name">
+        <label className={classes.label} htmlFor="name">
           Name:
         </label>
         <input
@@ -61,7 +61,7 @@ const EditPlantForm = (props) => {
           onChange={editedNameHandler}
           className={classes.editPlantFormInput}
         ></input>
-        <label className={classes.label} for="lastWatered">
+        <label className={classes.label} htmlFor="lastWatered">
           Last watered:{" "}
         </label>
         <input
@@ -71,10 +71,10 @@ const EditPlantForm = (props) => {
           onChange={editedLastWateredHandler}
           className={classes.editPlantFormInput}
         ></input>
-        {/* <label className={classes.label}>Last fertilized: </label>
+        {/* <label className={classes.label htmlFor="stuff"}>Last fertilized: </label>
         <input
           type="date"
-          id="date"
+          id="stuff"
           value={editedLastFert}
           onChange={editedLastFertHandler}
           className={classes.editPlantFormInput}
